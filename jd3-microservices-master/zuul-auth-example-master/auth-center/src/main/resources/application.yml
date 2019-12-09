@@ -1,0 +1,4 @@
+server:
+  port: 9101
+
+shuaicj.security.jwt.secret: otherpeopledontknowit

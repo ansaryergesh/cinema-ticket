@@ -1,0 +1,42 @@
+server:
+  port: 9100
+
+zuul:
+  routes:
+    auth-center:
+      path: /login/**
+      url: http://127.0.0.1:9101/
+      sensitiveHeaders: Cookie,Set-Cookie
+      stripPrefix: false
+    backend-service:
+      path: /backend/**
+      url: http://127.0.0.1:9102/
+    api-service:
+      path: /back/**
+      url: http://127.0.0.1:8081/
+
+shuaicj.security.jwt.secret: otherpeopledontknowit
+
+eureka:         #tells about the Eureka server details and its refresh time
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+
+spring:
+  application:
+    name: Zuul-Api-Gateway   #current service name to be used by the eureka server
+
+management:
+  security:
+    enabled: false  #disable the spring security on the management endpoints like /env, /refresh etc.
+
+logging:
+  level:
+    com.example.howtodoinjava: DEBUG
