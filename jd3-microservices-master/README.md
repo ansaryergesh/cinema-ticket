@@ -5,7 +5,6 @@ Build system, which have movie list and users who can booking the seats for cine
 
 ## Authors:
 * [Ansar](https://github.com/ansaryergesh)
-* [Amanda](https://github.com/vieiramanda11)
 
 ## Frameworks
 
