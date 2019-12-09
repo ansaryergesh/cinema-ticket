@@ -1,3 +1,3 @@
-# jd3-microservices
-microservices  java spring
+# Cinema Ticket
+Movie booking ticket system
 # midterm
