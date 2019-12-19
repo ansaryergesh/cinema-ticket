@@ -1,8 +1,5 @@
 package kz.iitu.jd3.bookrequest;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.boot.SpringApplication;
@@ -27,21 +24,12 @@ public class BookRequestApplication {
 	}
 
 	@Bean
-	@LoadBalanced
-	public RestTemplate getRestTemplate() {
-		HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
-		requestFactory.setConnectTimeout(3000);
-
-		return new RestTemplate(requestFactory);
-	}
-
-	@Bean
-	public KafkaTemplate<String, BookRequest> myMessageKafkaTemplate() {
+	public KafkaTemplate<String, MovieRequest> myMessageKafkaTemplate() {
 		return new KafkaTemplate<>(greetingProducerFactory());
 	}
 
 	@Bean
-	public ProducerFactory<String, BookRequest> greetingProducerFactory() {
+	public ProducerFactory<String, MovieRequest> greetingProducerFactory() {
 		Map<String, Object> configProps = new HashMap<>();
 		configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
 		configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);

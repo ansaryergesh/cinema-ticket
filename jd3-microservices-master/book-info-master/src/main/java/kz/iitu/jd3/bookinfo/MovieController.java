@@ -10,24 +10,25 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/book/info")
-public class BookController {
+public class MovieController {
 
 
     @GetMapping("/{userId}")
     public UserBook getBooksByUserId(
             @PathVariable("userId") String userId) {
 
-        List<Book> userBookList =  Arrays.asList(
-    new Book("1", "Title 1", "Tt", "Desc 1"),
-    new Book("2", "Title 2", "Ttt", "Desc 2"));
 
-        UserBook userBook = new UserBook(userBookList);
+        List<Movie> userMovieList =  Arrays.asList(
+    new Movie("1", "Screen 1", "11", "Desc 1"),
+    new Movie("2", "Screen 2", "12", "Desc 2"));
+
+        UserBook userBook = new UserBook(userMovieList);
 
         return userBook;
     }
     @GetMapping("/detail/{id}")
-    public Book getBookById(@PathVariable("id") String id) {
+    public Movie getBookById(@PathVariable("id") String id) {
 
-        return new Book(id, id + " - Abay zholy", "Auezov", "");
+        return new Movie(id, id +    " - Marvel", "action", "description");
     }
 }

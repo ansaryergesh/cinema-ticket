@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookRequest {
+public class MovieRequest {
 
     private String userId;
     private Movie movie;

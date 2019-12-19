@@ -1,0 +1,16 @@
+version: '2.2'
+services:
+    service-discovery:
+        container_name: eureka
+        build:
+            context: ./eureka
+        image: eureka:latest
+        ports:
+            - 8761:8761
+    service-discovery:
+        container_name: catalog
+        build:
+            context: ./catalog
+        image: catalog:latest
+        ports:
+            - 8081:8081

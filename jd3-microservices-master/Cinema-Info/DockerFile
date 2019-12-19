@@ -1,0 +1,6 @@
+FROM openjdk:8
+
+ADD target/MovieInfoService-0.0.1-SNAPSHOT.jar Cinema.jar
+EXPOSE 8090
+
+ENTRYPOINT ["java", "-jar", "Cinema.jar"]

@@ -1,0 +1,7 @@
+FROM openjdk:8
+
+ADD target/Catalog-0.0.1-SNAPSHOT.jar Catalog.jar
+EXPOSE 8081
+
+ENTRYPOINT ["java", "-jar", "Catalog.jar"]
+

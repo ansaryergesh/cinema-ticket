@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
-@RequestMapping(value = "/request")
-public class BookRequestController {
+@RequestMapping(value = "/book/request")
+public class MovieRequestController {
+
+    private final Producer producer;
 
     @Bean
     public RestTemplate restTemplate() {
@@ -16,23 +18,21 @@ public class BookRequestController {
 
     @Autowired
     private RestTemplate restTemplate;
-    private final Producer producer;
 
     @Autowired
-    public BookRequestController(Producer producer) {
+    public MovieRequestController(Producer producer) {
         this.producer = producer;
     }
 
     // TODO Ideally there should POST request
-    @GetMapping("/{id}")
-    public Movie sendMessageToKafkaTopic2(@PathVariable(value = "id") Long id) {
+    @GetMapping
+    public Movie sendMessageToKafkaTopic2(@RequestParam("id") String id) {
         Movie  movie = restTemplate.getForObject(
-                "http://localhost:8082/movie/movies/"+id,
+                "http://localhost:8081/api/movie/"+id,
                 Movie.class);
 
         MovieRequest movieRequest = new MovieRequest("1", movie);
-        this.producer.bookRequestNotify(movieRequest);
+        this.producer.movieRequestNotify(movieRequest);
         return movie;
     }
 }
-//new Movie(-1L,"","","","","",100,"")
